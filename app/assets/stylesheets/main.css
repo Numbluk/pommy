@@ -1,0 +1,241 @@
+@import "font-awesome";
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500italic);
+@import url(https://fonts.googleapis.com/css?family=Libre+Baskerville);
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/***************************************************************************
+
+Icons and Path
+
+***************************************************************************/
+#path_directions {
+  text-align: center;
+  box-sizing: border-box;
+  padding: 40px 10px;
+}
+
+#path_icons::after,
+#paths::after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+span.path_container + span.path_container {
+  padding-left: 40px;
+}
+
+i {
+  color: #3E606F;
+  display: inline-block;
+  position: relative;
+}
+
+.circle {
+  background-color: #3E606F;
+	display: inline-block;
+  content: '';
+  border-radius: 100%;
+  height: 12px;
+  width: 12px;
+  position: absolute;;
+  top: 22px;
+  right: -1px;
+}
+
+.fa-coffee .circle {
+  right: 3px;
+}
+
+.fa-smile-o .circle {
+  right: 0px;
+}
+
+#paths {
+  vertical-align: middle;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.line {
+  background-color: #3E606F;
+  display: inline-block;
+  height: 3px;
+  width: 48px;
+  position: absolute;
+  top: 26px;
+  left: 11px;
+}
+
+.fa-coffee .line {
+  width: 48px;
+	left: 14px;
+}
+
+.finished_line_or_circle {
+  background: #FCFFF5;
+}
+
+.finished_stage {
+  color: #FCFFF5;
+}
+
+/***************************************************************************
+
+Body
+
+***************************************************************************/
+
+html,
+body,
+main {
+  height: 100%;
+}
+
+body {
+  background-color: #193441;
+	font-family: 'Raleway', sans-serif;
+}
+
+main {
+  background-color: #91AA9D;
+  width: 90%;
+  margin: 0 auto;
+}
+
+h1 {
+	font-size: 50px;
+	font-weight: 500;
+	font-style: italic;
+	text-align: center;
+}
+
+#login_container {
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 40px;
+	width: 150px;
+}
+
+a {
+	text-decoration: none;
+}
+
+.landing_links a,
+#login_container small a {
+	color: #FCFFF5;
+}
+
+.landing_links {
+	font-size: 2em;
+	margin: 10px 0;
+	background-color: #3E606F;
+	padding: 7px 0;
+	border-radius: 4px;
+}
+
+small {
+	font-size: 12px;
+}
+
+/***************************************************************************
+
+Time
+
+***************************************************************************/
+#time_container {
+	font-family: "Libre Baskerville", serif;
+	text-align: center;
+}
+
+#time_container span {
+	font-size: 5em;
+}
+
+#time_container #minutes:after {
+	content: ':';
+	position: relative;
+	top: -4px;
+	left: 2px;
+}
+
+#time_container a#start_end_time {
+	background: #193441;
+	color: #D1DBBD;
+	display: inline-block;
+	margin-top: 20px;
+	padding: 10px;
+	border-radius: 7px;
+}
+
+#time_container a#start_end_time:hover {
+	background: #3E606F;
+}
+
+/* As hex codes
+
+
+.color-primary-0 { color: #0EA5FF }	 Main Primary color
+.color-primary-1 { color: #A9DFFF }
+.color-primary-2 { color: #78CDFF }
+.color-primary-3 { color: #00578A }
+.color-primary-4 { color: #00436A }
+
+
+
+As RGBa codes
+
+.rgba-primary-0 { color: rgba( 14,165,255,1) }	Main Primary color
+.rgba-primary-1 { color: rgba(169,223,255,1) }
+.rgba-primary-2 { color: rgba(120,205,255,1) }
+.rgba-primary-3 { color: rgba(  0, 87,138,1) }
+.rgba-primary-4 { color: rgba(  0, 67,106,1) }
+
+*/
