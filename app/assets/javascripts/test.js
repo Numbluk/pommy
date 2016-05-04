@@ -1,3 +1,5 @@
+var timerVar;
+
 $(document).ready(function() {
   var current_stage = 1;
   var first_stage = 1;
@@ -100,7 +102,8 @@ $(document).ready(function() {
   setMinutes();
   setSeconds();
 
-  $("#start_end_time").on("click", function() {
+  $("#start_end_time").on("click", function(e) {
+    e.preventDefault();
 
      if ( checkIfStartTime() ) {
       if ( current_stage === first_stage ) {
@@ -110,21 +113,21 @@ $(document).ready(function() {
         current_stage += 1;
       }
 
-      var timerVar = window.setInterval(function decrementSecond() {
-        total_time_in_seconds -= 1;
-        setMinutes();
-        setSeconds();
-        changeTime( minutes, seconds );
+      timerVar = window.setInterval(function decrementSecond() {
+      total_time_in_seconds -= 1;
+      setMinutes();
+      setSeconds();
+      changeTime( minutes, seconds );
 
-        if ( checkIfEndingTime() ) {
-          window.clearInterval(timerVar);
-          if ( current_stage !== final_stage ) {
-            $("#start_end_time").text("Set Time");
-          } else {
-            $("#start_end_time").text("Reset");
-          }
-          completeStage();
+      if ( checkIfEndingTime() ) {
+        window.clearInterval(timerVar);
+        if ( current_stage !== final_stage ) {
+          $("#start_end_time").text("Set Time");
+        } else {
+          $("#start_end_time").text("Reset");
         }
+        completeStage();
+      }
 
       }, 1000);
     } else if ( checkIfEndingTime() ) {
@@ -137,4 +140,13 @@ $(document).ready(function() {
       setSeconds();
     }
   });
+
+  // Reset on page leave
+  if (timerVar) {
+    window.clearInterval(timerVar);
+    console.log('h3llo');
+    current_stage = 1;
+    resetStages();
+    return null;
+  }
 });
