@@ -362,3 +362,18 @@ Messages
 .alert-error {
 	background-color: #E74C3C;
 }
+
+/***************************************************************************
+
+Profile
+
+***************************************************************************/
+#overview {
+	margin: 0 auto;
+	width: 270px;
+	padding-top: 30px;
+}
+
+#overview li {
+	margin-top: 10px;
+}

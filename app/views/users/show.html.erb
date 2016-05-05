@@ -1,0 +1,16 @@
+<%= render 'shared/title', title: @user.username + ' Overview' %>
+
+<ul id="overview">
+  <li>
+    <span>Total Clears:</span>
+    <span><%= @user.total_clear %></span>
+  </li>
+  <li>
+    <span>Total Stages Complete:</span>
+    <span><%= @user.total_stages_complete %></span>
+  </li>
+  <li>
+    <span>Total Time Spent Working:</span>
+    <span><%= labor_time_prettyfied %></span>
+  </li>
+</ul>
