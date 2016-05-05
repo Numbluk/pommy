@@ -7,6 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header>
+    <%= render 'layouts/nav' %>
+  </header>
   <main>
     <div id="path_directions">
       <div id="path_icons">
@@ -66,6 +69,8 @@
         </span>
       </div>
     </div>
+
+    <%= render 'layouts/messages' %>
 
     <%= yield %>
   </main>

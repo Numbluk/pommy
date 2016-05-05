@@ -1,0 +1,10 @@
+<% if model.errors.any? %>
+  <div id="errors">
+  <h3>The following error(s) were found:</h3>
+  <ul>
+    <% model.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+  </div>
+<% end %>

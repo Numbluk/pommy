@@ -1,0 +1,11 @@
+<h1>
+  <%= link_to root_path do %>
+    Pommy
+    <i id="fav-header" class="fa fa-hand-peace-o" aria-hidden="true"></i>
+  <% end %>
+</h1>
+
+<% if logged_in? %>
+  <%= link_to 'Logout', logout_path, id: 'logout' %>
+  <%= link_to 'Profile', user_path(current_user.id), id: 'profile' %>
+<% end %>

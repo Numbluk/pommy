@@ -3,16 +3,17 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   root to: 'landing#index'
+  get 'about', to: 'landing#about'
 
-  resources :users, only: [:show, :new, :create] do
-    collection do
-      get :login
-    end
-  end
+  resources :users, only: [:show, :new, :create]
 
-  resources :times, only: [:create] do
+  resources :stages, only: [:create] do
     collection do
       get :display
     end
   end
+
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  get 'logout', to: 'sessions#destroy'
 end

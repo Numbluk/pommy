@@ -58,7 +58,7 @@ Icons and Path
 #path_directions {
   text-align: center;
   box-sizing: border-box;
-  padding: 40px 10px;
+  padding: 0 10px 80px 10px;
 }
 
 #path_icons::after,
@@ -144,17 +144,48 @@ body {
 	font-family: 'Raleway', sans-serif;
 }
 
-main {
+main,
+header {
   background-color: #91AA9D;
   width: 90%;
   margin: 0 auto;
 }
 
-h1 {
-	font-size: 50px;
+header {
+	padding-top: 4px;
+	padding-bottom: 6px;
+	background-color: rgba(209, 219, 189, 0.9);
+}
+
+main {
+	padding-top: 20px;
+}
+
+#fav-header {
+	color: #333;
+}
+
+h1,
+h2 {
+	font-size: 2.1em;
 	font-weight: 500;
 	font-style: italic;
 	text-align: center;
+	color: #333;
+}
+
+h1 {
+	display: inline-block;
+	padding-left: 8px;
+	font-size: 24px;
+	position: relative;
+	left: 50%;
+	margin-left: -59px;
+}
+
+h1:hover a,
+h1:hover a #fav-header {
+	color: rgba(51, 51, 51, 0.7);
 }
 
 #login_container {
@@ -164,8 +195,29 @@ h1 {
 	width: 150px;
 }
 
+#logout:hover,
+#profile:hover {
+	color: rgba(51, 51, 51, 0.5);
+}
+
+#logout {
+	position: relative;
+	margin-left: -50px;
+}
+
+#profile {
+	padding-left: 8px;
+}
+
+.landing_links a {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
 a {
 	text-decoration: none;
+	color: #333;
 }
 
 .landing_links a,
@@ -179,6 +231,10 @@ a {
 	background-color: #3E606F;
 	padding: 7px 0;
 	border-radius: 4px;
+}
+
+.landing_links:hover {
+	background-color: rgba(62, 96, 111, 0.7)
 }
 
 small {
@@ -239,3 +295,70 @@ As RGBa codes
 .rgba-primary-4 { color: rgba(  0, 67,106,1) }
 
 */
+
+/***************************************************************************
+
+Errors
+
+***************************************************************************/
+div#errors {
+	width: 400px;
+	margin: 20px auto;
+	background-color: rgba(255, 0, 0, 0.3);
+	padding: 5px;
+}
+
+div#errors h3 {
+	font-size: 1.3em;
+}
+
+div#errors ul {
+	margin-top: 8px;
+	list-style: circle;
+	margin-left: 22px;
+}
+
+
+/***************************************************************************
+
+Forms
+
+***************************************************************************/
+.field_with_errors {
+	display: inline;
+}
+
+form {
+	display: block;
+	margin: 0 auto;
+	width: 250px;
+	margin-top: 22px;
+}
+
+form label,
+form input,
+form select {
+	margin-top: 10px;
+}
+
+form label {
+	display: block;
+}
+
+/***************************************************************************
+
+Messages
+
+***************************************************************************/
+.alert {
+	text-align: center;
+	padding: 10px;
+}
+
+.alert-success {
+	background-color: #BEEB9F;
+}
+
+.alert-error {
+	background-color: #E74C3C;
+}

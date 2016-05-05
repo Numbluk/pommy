@@ -9,6 +9,18 @@ $(document).ready(function() {
   var minutes = 3;
   var seconds;
 
+  var getFinishedStageType = function getFinishedStageType() {
+    if ( current_stage === 3) {
+      return 'labor';
+    } else if ( current_stage === first_stage ) {
+      return 'long_rest';
+    } else if ( labor_stages.indexOf(current_stage - 1) > -1 ) {
+      return 'labor';
+    } else if ( rest_stages.indexOf(current_stage - 1) > -1 ) {
+      return 'short_rest';
+    }
+  };
+
   var setMinutes = function setMinutes() {
     minutes = Math.floor(total_time_in_seconds / 60);
   };
@@ -109,15 +121,16 @@ $(document).ready(function() {
       if ( current_stage === first_stage ) {
         $("i.fa[data-stage='" + first_stage + "']").addClass("finished_stage");
         $(".circle[data-stage='" + first_stage + "']").addClass("finished_line_or_circle");
-
         current_stage += 1;
       }
+      total_time_in_seconds = 3;
 
       timerVar = window.setInterval(function decrementSecond() {
       total_time_in_seconds -= 1;
       setMinutes();
       setSeconds();
       changeTime( minutes, seconds );
+      $("title").text("Pommy - " + $("#minutes").text() + ":" + $("#seconds").text());
 
       if ( checkIfEndingTime() ) {
         window.clearInterval(timerVar);
@@ -127,6 +140,15 @@ $(document).ready(function() {
           $("#start_end_time").text("Reset");
         }
         completeStage();
+
+        // Make ajax call to save time
+        console.log("current_stage: " + current_stage);
+        $.ajax({
+          url     : '/stages',
+          method  : 'post',
+          data    : { stage_type: getFinishedStageType() },
+          success : function( response ) { console.log('sent!'); }
+        });
       }
 
       }, 1000);
