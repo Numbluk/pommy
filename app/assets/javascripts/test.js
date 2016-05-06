@@ -134,6 +134,7 @@ $(document).ready(function() {
 
       if ( checkIfEndingTime() ) {
         console.log('ending checked');
+        console.log(timerVar);
         window.clearInterval(timerVar);
         if ( current_stage !== final_stage ) {
           $("#start_end_time").text("Set Time");
@@ -169,11 +170,13 @@ $(document).ready(function() {
   });
 
   // Reset on page leave
-  if (timerVar) {
-    window.clearInterval(timerVar);
-    console.log('h3llo');
-    current_stage = 1;
-    resetStages();
-    return null;
-  }
+  $(document).on('page:change', function() {
+    if (timerVar) {
+      window.clearInterval(timerVar);
+      console.log('h3llo');
+      current_stage = 1;
+      resetStages();
+      return null;
+    }
+  });
 });
