@@ -5,13 +5,19 @@ Rails.application.routes.draw do
   root to: 'landing#index'
   get 'about', to: 'landing#about'
 
-  resources :users, only: [:show, :new, :create]
+  resources :users, only: [:show, :new, :create] do
+    member do
+      post :change_project
+    end
+  end
 
   resources :stages, only: [:create] do
     collection do
       get :display
     end
   end
+
+  resources :projects, only: [:index, :show, :new, :create]
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

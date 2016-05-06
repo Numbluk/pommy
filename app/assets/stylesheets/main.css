@@ -144,6 +144,10 @@ body {
 	font-family: 'Raleway', sans-serif;
 }
 
+main {
+	overflow: hidden;
+}
+
 main,
 header {
   background-color: #91AA9D;
@@ -234,7 +238,7 @@ a {
 }
 
 .landing_links:hover {
-	background-color: rgba(62, 96, 111, 0.7)
+	background-color: rgba(62, 96, 111, 0.7);
 }
 
 small {
@@ -371,9 +375,97 @@ Profile
 #overview {
 	margin: 0 auto;
 	width: 270px;
-	padding-top: 30px;
+	padding-top: 18px;
+	padding-bottom: 40px;
 }
 
 #overview li {
 	margin-top: 10px;
+}
+
+/***************************************************************************
+
+Projects
+
+***************************************************************************/
+
+#new_project_link {
+	display: inline-block;
+	position: relative;
+	left: 50%;
+	margin-left: -49px;
+	margin-top: 10px;
+	padding: 4px;
+	background-color: #3E606F;
+	color: #FCFFF5;
+	border-radius: 3px;
+}
+
+#new_project_link:hover {
+	background-color: rgba(62, 96, 111, 0.7);
+}
+
+#projects {
+	margin: 0 auto;
+	min-width: 400px;
+	max-width: 600px;
+	margin-top: 20px;
+	height: 100%;
+	position: relative;
+}
+
+#projects_divider {
+	width: 1px;
+	height: 100%;
+	position: absolute;
+	background: #ddd;
+	left: 50%;
+}
+
+.project_container {
+	vertical-align: top;
+	display: inline-block;
+	width: 50%;
+}
+
+#current_projects,
+#invitations {
+	display: inline-block;
+	width: 100%;
+}
+
+#invitations {
+	box-sizing: border-box;
+	padding-left: 3px;
+}
+
+#current_projects h4,
+#invitations h4 {
+	display: block;
+	text-align: center;
+}
+
+#current_projects li {
+	margin: 12px 0;
+}
+
+.view_project {
+	float: right;
+	padding-right: 4px;
+}
+
+.view_project:hover {
+	color: rgba(51, 51, 51, 0.5);
+}
+
+.make_current_project {
+	color: inherit;
+}
+
+.make_current_project:hover {
+	color: rgba(51, 51, 51, 0.5);
+}
+
+.active_project {
+	font-weight: 700;
 }

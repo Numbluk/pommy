@@ -1,0 +1,10 @@
+<%= render 'shared/title', title: 'New Project' %>
+
+<%= render 'shared/errors', model: @project %>
+
+<%= form_for @project do |f| %>
+  <%= f.label :project_name %>
+  <%= f.text_field :project_name %>
+  <br>
+  <%= f.submit 'Submit' %>
+<% end %>

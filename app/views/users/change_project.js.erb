@@ -1,0 +1,6 @@
+$(".active_project").toggleClass("active_project");
+<% if current_project.nil? %>
+  $("a:contains('Misc')").toggleClass("active_project");
+<% else %>
+  $("a:contains('<%= current_project %>')").toggleClass("active_project");
+<% end %>

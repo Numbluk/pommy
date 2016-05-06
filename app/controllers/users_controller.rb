@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :send_to_profile, except: [:show]
+  before_action :send_to_profile, except: [:show, :change_project]
   before_action :logged_in?, only: :show
 
   def show
@@ -18,6 +18,15 @@ class UsersController < ApplicationController
       redirect_to display_stages_path
     else
       render 'new'
+    end
+  end
+
+  def change_project
+    session[:current_project] = params[:current_project]
+    puts params[:current_project]
+    respond_to do |format|
+      format.js do
+      end
     end
   end
 
