@@ -135,7 +135,7 @@ $(document).ready(function() {
       if ( checkIfEndingTime() ) {
         console.log('ending checked');
         console.log(timerVar);
-        window.clearInterval(timerVar);
+        window.clearInterval(timerVar - 1);
         if ( current_stage !== final_stage ) {
           $("#start_end_time").text("Set Time");
         } else {
