@@ -1,0 +1,88 @@
+<%= render 'shared/title', title: @project.project_name %>
+
+<ul id="overview" class="project_overview">
+  <li>
+    <span>Total Clears:</span>
+    <span><%= @project.total_clear %></span>
+  </li>
+  <li>
+    <span>Total Time Spent Working:</span>
+    <span><%= labor_time_prettyfied(@project.total_labor_time) %></span>
+  </li>
+  <li>
+    <p>Owner: <%= @project.owner.username %></p>
+  </li>
+</ul>
+
+<% if @project.owner == current_user %>
+  <div id="project">
+    <div id="project_divider"></div>
+    <div class="project_container">
+      <div id="project_users">
+        <h5>Contributors</h4>
+        <% if @project.users.any? %>
+          <ul id="participants" class="owner">
+          <% @project.users.uniq.each do |user| %>
+            <li>
+              <span class="contributor">
+                <%= user.username %>
+              </span>
+
+              <% user_time = user.total_by_project_and_stage(@project.id, 'labor') %>
+              <span class="contrib_abs_time">
+                <%= labor_time_prettyfied(user_time) %>
+              </span>:
+              <span class="contrib_rel_time">
+                <%= labor_as_percentage(user_time, @project.total_labor_time) %>
+              </span>
+            </li>
+          <% end %>
+          </ul>
+        <% end %>
+      </div>
+    </div><!--
+
+    --><div class="projects_container">
+      <div id="invite_users">
+        <h5>Add Users</h5>
+        <% if User.all.any? %>
+        <ul id="users">
+          <% User.all.each do |user| %>
+            <% if addable_user(@project.id, user)  %>
+               <li>
+                 <%= user.username %>
+                 <%= link_to project_invitations_path(@project, user_id: User.find_by(username: user.username)), class: 'add_user', remote: true, method: :post do %>
+                   <i class="fa fa-plus-square" aria-hidden="true"></i>
+                 <% end %>
+               </li>
+            <% end %>
+          <% end %>
+        </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% else %>
+<div id="participants" class="viewer">
+  <h5>Contributors</h4>
+  <% if @project.users %>
+  <ul id="participants">
+  <% @project.users.uniq.each do |user| %>
+    <li>
+      <span class="contributor">
+        <%= user.username %>
+      </span>
+
+      <% user_time = user.total_by_project_and_stage(@project.id, 'labor') %>
+      <span class="contrib_abs_time">
+        <%= labor_time_prettyfied(user_time) %>
+      </span>:
+      <span class="contrib_rel_time">
+        <%= labor_as_percentage(user_time, @project.total_labor_time) %>
+      </span>
+    </li>
+  <% end %>
+  </ul>
+  <% end %>
+</div>
+<% end %>

@@ -17,7 +17,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :projects, only: [:index, :show, :new, :create]
+  resources :projects, only: [:index, :show, :new, :create] do
+    resources :invitations, only: [:create, :destroy]
+  end
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

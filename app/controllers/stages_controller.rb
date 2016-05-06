@@ -7,6 +7,7 @@ class StagesController < ApplicationController
         format.json do
           @stage.stage_type = params[:stage_type]
           @stage.user = current_user
+          @stage.project = Project.find_by(project_name: current_project) if current_project
           @stage.save
           render nothing: true
         end

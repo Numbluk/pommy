@@ -15,6 +15,18 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def show
+    @project = Project.find(params[:id])
+  end
+
+  def add_user
+    @user = User.find(params[:user_id])
+    @project = Project.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def get_params

@@ -19,6 +19,7 @@ class SessionsController < ApplicationController
   def destroy
     flash[:notice] = 'You are now logged out.'
     session[:user_id] = nil
+    session[:current_project] = nil
     redirect_to root_path
   end
 

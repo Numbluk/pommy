@@ -1,0 +1,12 @@
+$("#invitations li:contains('<%= @project.project_name %>') small:contains('<%= @project.owner.username %>')").closest('li').hide();
+alert('hello');
+
+<% if @accept %>
+  <% change_project_link = link_to @project.project_name, change_project_user_path(id: current_user.id, current_project: @project.project_name), class: 'make_current_project' + (current_project == @project.project_name ? ' active_project' : ''), method: :post, remote: true %>
+  <% labor = labor_time_prettyfied(current_user.total_by_project_and_stage(@project.id, 'labor')) %>
+  <% view_link = link_to 'View', project_path(@project), class: 'view_project' %>
+  <% puts 'this worked but didnt' %>
+  $("#current_projects ul").append('hdlefas');
+
+  $("#current_projects ul").append("<li><%= change_project_link %>:<%= labor %><%= view_link %></li>")
+<% end %>

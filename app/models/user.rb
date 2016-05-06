@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :stages
   has_many :owned_projects, foreign_key: 'user_id', class_name: 'Project'
   has_many :projects, through: :stages
+  has_many :invitations
 
   validates :username, presence: true,
                        uniqueness: true,
@@ -23,12 +24,12 @@ class User < ActiveRecord::Base
      get_stages_by('short_rest').count * 5 + total_clear() * 15
   end
 
-  def total_stages_complete
-    self.stages.count
-  end
-
   def total_clear
     get_stages_by('long_rest').count
+  end
+
+  def get_stages_by(stage_type)
+    self.stages.where(stage_type: stage_type)
   end
 
   def total_by_project_and_stage(project_id, stage)
@@ -42,10 +43,6 @@ class User < ActiveRecord::Base
     when 'long_rest'
       return count * 15
     end
-  end
-
-  def get_stages_by(stage_type)
-    self.stages.where(stage_type: stage_type)
   end
 
   def has_misc_stages?

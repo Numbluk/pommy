@@ -6,10 +6,6 @@
     <span><%= @user.total_clear %></span>
   </li>
   <li>
-    <span>Total Stages Complete:</span>
-    <span><%= @user.total_stages_complete %></span>
-  </li>
-  <li>
     <span>Total Time Spent Working:</span>
     <span><%= labor_time_prettyfied(@user.total_labor_time) %></span>
   </li>
@@ -21,21 +17,19 @@
 
 <div id="projects">
   <div id="projects_divider"></div>
-  <div class="project_container">
+  <div class="projects_container">
   <div id="current_projects">
     <h4>Current Projects</h4>
-    <% if @user.owned_projects.any? %>
     <ul>
-      <% if @user.has_misc_stages? %>
-        <li>
-          <%= link_to change_project_user_path(id: @user.id, current_project: nil), class: 'make_current_project' + (current_project == nil ? ' active_project' : ''), method: :post, remote: true do %>
-            Misc:
-          <% end %>
+      <li>
+        <%= link_to change_project_user_path(id: @user.id, current_project: nil), class: 'make_current_project' + (current_project == nil ? ' active_project' : ''), method: :post, remote: true do %>
+          Misc:
+        <% end %>
 
-          <%= labor_time_prettyfied(@user.total_by_project_and_stage(nil, 'labor')) %>
-        </li>
-      <% end %>
-        <% @user.owned_projects.each do |project| %>
+        <%= labor_time_prettyfied(@user.total_by_project_and_stage(nil, 'labor')) %>
+      </li>
+      <% if @user.owned_projects.any? || @user.projects.any? %>
+        <% (@user.owned_projects + @user.projects).uniq.each do |project| %>
           <li>
             <%= link_to change_project_user_path(id: @user.id, current_project: project.project_name), class: 'make_current_project' + (current_project == project.project_name ? ' active_project' : ''), method: :post, remote: true do %>
               <%= project.project_name  %>
@@ -50,9 +44,27 @@
   </div>
   </div><!--
 
-  --><div class="project_container">
+  --><div class="projects_container">
   <div id="invitations">
     <h4>Invitations</h4>
+    <ul>
+      <% @user.invitations.each do |invite| %>
+        <li>
+          <%= invite.project.project_name %> <br>
+          <small>by <%= invite.project.owner.username %></small>
+
+          <%= link_to 'View', project_path(invite.project) %>
+
+          <%= link_to project_invitation_path(invite.project.id, invite.id, accept: false), remote: true, method: :delete do %>
+            <i class="fa fa-minus-square" aria-hidden="true"></i>
+          <% end %>
+
+          <%= link_to project_invitation_path(invite.project.id, invite.id, accept: true), remote: true, method: :delete, 'data-type' => 'script' do %>
+            <i class="fa fa-plus-square" aria-hidden="true"></i>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
   </div>
   </div>
 </div>
