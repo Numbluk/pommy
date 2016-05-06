@@ -1,4 +1,4 @@
-var timerVar;
+timerVar;
 
 $(document).ready(function() {
   var current_stage = 1;
@@ -133,6 +133,7 @@ $(document).ready(function() {
       $("title").text("Pommy - " + $("#minutes").text() + ":" + $("#seconds").text());
 
       if ( checkIfEndingTime() ) {
+        console.log('ending checked');
         window.clearInterval(timerVar);
         if ( current_stage !== final_stage ) {
           $("#start_end_time").text("Set Time");
