@@ -15,7 +15,8 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = "You are now registered."
-      redirect_to display_stages_path
+      redirect_to user_path(@user)
+      session[:user_id] = @user.id
     else
       render 'new'
     end
