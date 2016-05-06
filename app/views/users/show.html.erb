@@ -59,7 +59,7 @@
             <i class="fa fa-minus-square" aria-hidden="true"></i>
           <% end %>
 
-          <%= link_to project_invitation_path(invite.project.id, invite.id, accept: true), remote: true, method: :delete, 'data-type' => 'script' do %>
+          <%= link_to project_invitation_path(invite.project.id, invite.id, accept: true), remote: true, method: :delete do %>
             <i class="fa fa-plus-square" aria-hidden="true"></i>
           <% end %>
         </li>

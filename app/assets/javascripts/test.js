@@ -149,6 +149,10 @@ $(document).ready(function() {
           data    : { stage_type: getFinishedStageType() },
           success : function( response ) { console.log('sent!'); }
         });
+
+        // Notify
+        var snd = new Audio("/audios/shuffle.wav");
+        snd.play();
       }
 
       }, 1000);
