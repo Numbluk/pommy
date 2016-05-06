@@ -6,5 +6,5 @@ $("#invitations li:contains('<%= @project.project_name %>') small:contains('<%= 
   <% labor = labor_time_prettyfied(current_user.total_by_project_and_stage(@project.id, 'labor')) %>
   <% view_link = link_to 'View', project_path(@project), class: 'view_project' %>
 
-  $("#current_projects ul").append("<li><%= change_project_link %>:<%= labor %><%= view_link %></li>")
+  $("#current_projects ul").append('<li><%= change_project_link %> :  <%= labor %><%= view_link %></li>');
 <% end %>

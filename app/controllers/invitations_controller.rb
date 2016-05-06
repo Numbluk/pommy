@@ -18,15 +18,13 @@ class InvitationsController < ApplicationController
     respond_to do |format|
       format.js do
         @project = Project.find(params[:project_id])
-        # Invitation.delete(params[:id])
+        Invitation.delete(params[:id])
 
         if params[:accept] == 'true'
           @accept = true
-          # Stage.create(user: current_user, project: @project)
-          # render 'add_project', layout: false
-          # return
+          Stage.create(user: current_user, project: @project)
         end
-        render 'destroy', layout: false
+        render layout: false
       end
     end
   end
