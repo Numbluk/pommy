@@ -1,4 +1,4 @@
-timerVar;
+var timerVar;
 
 $(document).ready(function() {
   var current_stage = 1;
