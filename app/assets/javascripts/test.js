@@ -125,8 +125,8 @@ $(document).ready(function() {
       }
       total_time_in_seconds = 3;
 
-      timerVar = window.setInterval(function decrementSecond() {
-        console.log(timerVar);
+      var localTimerVar = window.setInterval(function decrementSecond() {
+      timerVar = localTimerVar;
       total_time_in_seconds -= 1;
       setMinutes();
       setSeconds();
@@ -135,7 +135,7 @@ $(document).ready(function() {
 
       if ( checkIfEndingTime() ) {
         console.log('ending checked');
-        console.log(timerVar);
+        // console.log(timerVar);
         window.clearInterval(timerVar);
         if ( current_stage !== final_stage ) {
           $("#start_end_time").text("Set Time");
@@ -145,7 +145,6 @@ $(document).ready(function() {
         completeStage();
 
         // Make ajax call to save time
-        console.log("current_stage: " + current_stage);
         $.ajax({
           url     : '/stages',
           method  : 'post',
