@@ -116,7 +116,7 @@ $(document).ready(function() {
 
   $("#start_end_time").on("click", function(e) {
     e.preventDefault();
-    e.stopImmediatePropagation();
+    e.stopImmediatePropagation(); // Stop double click event in Heroku
 
      if ( checkIfStartTime() ) {
       if ( current_stage === first_stage ) {
