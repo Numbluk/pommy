@@ -126,36 +126,37 @@ $(document).ready(function() {
       total_time_in_seconds = 3;
 
       var localTimerVar = window.setInterval(function decrementSecond() {
-      timerVar = localTimerVar;
-      total_time_in_seconds -= 1;
-      setMinutes();
-      setSeconds();
-      changeTime( minutes, seconds );
-      $("title").text("Pommy - " + $("#minutes").text() + ":" + $("#seconds").text());
+        // setting global timerVar adjusts for Heroku on page:change
+        timerVar = localTimerVar;
+        total_time_in_seconds -= 1;
+        setMinutes();
+        setSeconds();
+        changeTime( minutes, seconds );
+        $("title").text($("#minutes").text() + ":" + $("#seconds").text() + "- Pommy");
 
-      if ( checkIfEndingTime() ) {
-        console.log('ending checked');
-        // console.log(timerVar);
-        window.clearInterval(timerVar);
-        if ( current_stage !== final_stage ) {
-          $("#start_end_time").text("Set Time");
-        } else {
-          $("#start_end_time").text("Reset");
+        if ( checkIfEndingTime() ) {
+          console.log('ending checked');
+          // console.log(timerVar);
+          window.clearInterval(localTimerVar);
+          if ( current_stage !== final_stage ) {
+            $("#start_end_time").text("Set Time");
+          } else {
+            $("#start_end_time").text("Reset");
+          }
+          completeStage();
+
+          // Make ajax call to save time
+          $.ajax({
+            url     : '/stages',
+            method  : 'post',
+            data    : { stage_type: getFinishedStageType() },
+            success : function( response ) { console.log('sent!'); }
+          });
+
+          // Notify
+          var snd = new Audio("/audios/shuffle.wav");
+          snd.play();
         }
-        completeStage();
-
-        // Make ajax call to save time
-        $.ajax({
-          url     : '/stages',
-          method  : 'post',
-          data    : { stage_type: getFinishedStageType() },
-          success : function( response ) { console.log('sent!'); }
-        });
-
-        // Notify
-        var snd = new Audio("/audios/shuffle.wav");
-        snd.play();
-      }
 
       }, 1000);
     } else if ( checkIfEndingTime() ) {
