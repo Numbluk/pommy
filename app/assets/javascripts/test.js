@@ -116,6 +116,7 @@ $(document).ready(function() {
 
   $("#start_end_time").on("click", function(e) {
     e.preventDefault();
+    e.stopPropagation();
 
      if ( checkIfStartTime() ) {
       if ( current_stage === first_stage ) {
