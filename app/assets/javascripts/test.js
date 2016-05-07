@@ -124,7 +124,6 @@ $(document).ready(function() {
         $(".circle[data-stage='" + first_stage + "']").addClass("finished_line_or_circle");
         current_stage += 1;
       }
-      total_time_in_seconds = 3;
 
       var localTimerVar = window.setInterval(function decrementSecond() {
         // setting global timerVar adjusts for Heroku on page:change
